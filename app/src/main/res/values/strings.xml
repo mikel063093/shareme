@@ -5,4 +5,8 @@
   <string name="register">Register</string>
   <string name="FACEBOOK_APP_ID" translatable="false">1538724212839714</string>
   <string name="ACCOUNT_KIT_CLIENT_TOKEN">2ca8f772d14dd20ff03ed63ce080435a</string>
+  <string name="create_profile">Create Profile</string>
+  <string name="enter_name">Enter name and add a profile picture</string>
+  <string name="next">Next</string>
+  <string name="enter_a_name">Enter a name</string>
 </resources>
