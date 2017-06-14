@@ -1,7 +1,8 @@
 package co.mike.shareme
 
 import android.app.Application
-import butterknife.ButterKnife
+import com.miguelbcr.ui.rx_paparazzo2.RxPaparazzo
+
 
 /**
  * Created by home on 5/29/17.
@@ -9,7 +10,8 @@ import butterknife.ButterKnife
 class AppMain : Application() {
   override fun onCreate() {
     super.onCreate()
-    ButterKnife.setDebug(BuildConfig.DEBUG)
+    RxPaparazzo.register(this)
+
   }
 
 }

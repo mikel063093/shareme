@@ -9,7 +9,7 @@
   </style>
 
   <style name="ButtonBorderLess" parent="Widget.AppCompat.Button.Borderless">
-    <item name="android:textColor">@color/blue</item>
+    <item name="android:textColor">@color/btn_enabled_disabled</item>
     <item name="android:textSize">14sp</item>
     <item name="android:textAllCaps">false</item>
   </style>

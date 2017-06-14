@@ -7,6 +7,7 @@
   <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
   <uses-permission android:name="android.permission.INTERNET"/>
 
+
   <application
       android:name=".AppMain"
       android:allowBackup="true"
@@ -42,6 +43,16 @@
     </activity>
     <activity android:name=".Create_profile">
     </activity>
+
+    <provider
+        android:name="android.support.v4.content.FileProvider"
+        android:authorities="${applicationId}.file_provider"
+        android:exported="false"
+        android:grantUriPermissions="true">
+      <meta-data
+          android:name="android.support.FILE_PROVIDER_PATHS"
+          android:resource="@xml/file_provider_paths"/>
+    </provider>
   </application>
 
 </manifest>

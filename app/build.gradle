@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 
 android {
   compileSdkVersion 26
@@ -15,6 +16,12 @@ android {
     resConfigs "en", "es"
   }
 
+  dataBinding {
+    enabled = true
+  }
+  lintOptions {
+    abortOnError false
+  }
   signingConfigs {
     release {
       storeFile rootProject.file('key.jks')
@@ -31,7 +38,7 @@ android {
       signingConfig signingConfigs.release
     }
     debug {
-      minifyEnabled true
+      minifyEnabled false
       proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
       signingConfig signingConfigs.release
     }
@@ -56,13 +63,30 @@ dependencies {
   implementation 'com.android.support.constraint:constraint-layout:1.0.2'
 
   //Butterknife
-  compile 'com.jakewharton:butterknife:8.6.0'
-  kapt 'com.jakewharton:butterknife-compiler:8.6.0'
+  //compile 'com.jakewharton:butterknife:8.6.0'
+ // kapt 'com.jakewharton:butterknife-compiler:8.6.0'
 
   //Facebook
   compile('com.facebook.android:account-kit-sdk:4.+') {
     exclude group: 'com.android.support', module: 'design'
+    exclude group: 'com.android.support', module: 'appcompat'
+    exclude group: 'com.android.support', module: 'support-v4'
+    exclude group: 'com.android.support', module: 'appcompat-v7'
+  }
+  kapt "com.android.databinding:compiler:$android_plugin_version"
+
+  compile ("com.github.miguelbcr:RxPaparazzo:0.5.3-2.x"){
+    exclude group: 'io.reactivex.rxjava2', module: 'rxjava'
+    exclude group: 'com.github.yalantis', module: 'ucrop'
+    exclude group: 'com.android.support', module: 'support-fragment'
+  }
+  compile "io.reactivex.rxjava2:rxjava:2.1.0"
+  compile ('io.reactivex.rxjava2:rxandroid:2.0.1'){
+    exclude group: 'io.reactivex.rxjava2', module: 'rxjava'
   }
 
+}
+kapt {
+  generateStubs = true
 }
 buildscript {}

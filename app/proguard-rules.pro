@@ -30,3 +30,16 @@
    com.facebook.appevents.AppEventsLogger newLogger(android.content.Context);
    void logSdkEvent(java.lang.String, java.lang.Double, android.os.Bundle);
 }
+
+# Rxjava rules
+-dontwarn rx.internal.util.**
+
+-keepclassmembers class rx.internal.util.unsafe.*ArrayQueue*Field* {
+    long producerIndex;
+    long consumerIndex;
+}
+-keepclassmembers class rx.internal.util.unsafe.BaseLinkedQueueProducerNodeRef {
+    long producerNode;
+    long consumerNode;
+}
+
