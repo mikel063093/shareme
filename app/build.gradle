@@ -80,10 +80,20 @@ dependencies {
     exclude group: 'com.github.yalantis', module: 'ucrop'
     exclude group: 'com.android.support', module: 'support-fragment'
   }
+  compile ('com.github.mirrajabi:rx-contacts2:1.0'){
+    exclude group: 'io.reactivex.rxjava2', module: 'rxjava'
+    exclude group: 'com.android.support', module: 'support-annotations'
+  }
+  compile ('com.tbruyelle.rxpermissions2:rxpermissions:0.9.4@aar'){
+    exclude group: 'io.reactivex.rxjava2', module: 'rxjava'
+    exclude group: 'com.android.support', module: 'support-annotations'
+  }
   compile "io.reactivex.rxjava2:rxjava:2.1.0"
   compile ('io.reactivex.rxjava2:rxandroid:2.0.1'){
     exclude group: 'io.reactivex.rxjava2', module: 'rxjava'
   }
+  compile 'com.google.code.gson:gson:2.8.1'
+
 
 }
 kapt {

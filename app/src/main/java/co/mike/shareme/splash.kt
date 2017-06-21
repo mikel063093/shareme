@@ -2,10 +2,8 @@ package co.mike.shareme
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
 import android.widget.Toast
-
 import co.mike.shareme.base.BaseActivity
 import co.mike.shareme.util.Logger
 import com.facebook.accountkit.*

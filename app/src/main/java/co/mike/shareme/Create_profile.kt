@@ -1,6 +1,7 @@
 package co.mike.shareme
 
 
+import android.Manifest
 import android.app.Activity
 import android.databinding.DataBindingUtil
 import android.net.Uri
@@ -10,11 +11,14 @@ import android.text.TextWatcher
 import co.mike.shareme.base.BaseActivity
 import co.mike.shareme.databinding.ActivityCreateProfileBinding
 import co.mike.shareme.util.Logger
+import com.google.gson.Gson
 import com.miguelbcr.ui.rx_paparazzo2.RxPaparazzo
 import com.miguelbcr.ui.rx_paparazzo2.entities.FileData
 import com.miguelbcr.ui.rx_paparazzo2.entities.size.SmallSize
+import com.tbruyelle.rxpermissions2.RxPermissions
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import ir.mirrajabi.rxcontacts.RxContacts
 
 
 class Create_profile : BaseActivity() {
@@ -44,6 +48,27 @@ class Create_profile : BaseActivity() {
         Logger.log("onTextChanged $txt")
       }
     })
+
+    val rxPermissions = RxPermissions(this)
+    rxPermissions
+        .request(Manifest.permission.READ_CONTACTS)
+        .subscribe({ granted ->
+          if (granted) {
+            RxContacts.fetch(this)
+                .filter { m -> m.inVisibleGroup == 1 }
+                .toSortedList { obj, other -> obj.compareTo(other) }
+                .observeOn(Schedulers.io())
+                .subscribeOn(AndroidSchedulers.mainThread())
+                .subscribe { contacts ->
+                  val json = Gson()
+
+                  Logger.log("contacts", json.toJson(contacts))
+                }
+          } else {
+            Logger.log("permision READ_CONTACTS Nop")
+          }
+        })
+
 
   }
 
